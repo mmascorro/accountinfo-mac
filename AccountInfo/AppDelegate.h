@@ -14,8 +14,10 @@
 
 @property (weak) IBOutlet NSTextField *serialLabel;
 @property (weak) IBOutlet NSTextField *computerNameLabel;
+@property (weak) IBOutlet NSTextField *adobeAccountLabel;
 
-- (void)getComputerSerial;
-- (void)getComputerName;
+- (NSString*)getComputerSerial;
+- (NSString*)getComputerName;
+- (void)registerWithServer:(NSDictionary *)config;
 
 @end

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49272592199837CC00D0CA4A /* config.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 49272590199836E200D0CA4A /* config.json */; };
 		49F4399C1956D7DA00F2839B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49F4399B1956D7DA00F2839B /* Cocoa.framework */; };
 		49F439A61956D7DA00F2839B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49F439A41956D7DA00F2839B /* InfoPlist.strings */; };
 		49F439A81956D7DA00F2839B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F439A71956D7DA00F2839B /* main.m */; };
@@ -30,7 +31,21 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		492725911998372200D0CA4A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Debug;
+			dstSubfolderSpec = 16;
+			files = (
+				49272592199837CC00D0CA4A /* config.json in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		49272590199836E200D0CA4A /* config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
 		49F439981956D7DA00F2839B /* AccountInfo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AccountInfo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49F4399B1956D7DA00F2839B /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		49F4399E1956D7DA00F2839B /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -132,6 +147,7 @@
 				49F439A71956D7DA00F2839B /* main.m */,
 				49F439A91956D7DA00F2839B /* AccountInfo-Prefix.pch */,
 				49F439AA1956D7DA00F2839B /* Credits.rtf */,
+				49272590199836E200D0CA4A /* config.json */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -164,6 +180,7 @@
 				49F439941956D7DA00F2839B /* Sources */,
 				49F439951956D7DA00F2839B /* Frameworks */,
 				49F439961956D7DA00F2839B /* Resources */,
+				492725911998372200D0CA4A /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -466,6 +483,7 @@
 				49F439CB1956D7DA00F2839B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		49F439CC1956D7DA00F2839B /* Build configuration list for PBXNativeTarget "AccountInfoTests" */ = {
 			isa = XCConfigurationList;
@@ -474,6 +492,7 @@
 				49F439CE1956D7DA00F2839B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
