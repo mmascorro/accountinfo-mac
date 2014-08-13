@@ -1,6 +1,6 @@
 accountinfo-mac
 ==============
 
-Gets a computer's serial and name. 
+Client application for https://github.com/mmascorro/lb-computerdb
 
-Eventually, it will send this info to a server for logging, as well as get associate account information.
+Sends a computer's serial and name for logging purposes. Returns associated account information.
