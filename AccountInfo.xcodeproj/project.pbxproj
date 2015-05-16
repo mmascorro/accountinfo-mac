@@ -35,7 +35,7 @@
 		492725911998372200D0CA4A /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = Debug;
+			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
 				49272592199837CC00D0CA4A /* config.json in CopyFiles */,

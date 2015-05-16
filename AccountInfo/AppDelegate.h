@@ -15,9 +15,16 @@
 @property (weak) IBOutlet NSTextField *serialLabel;
 @property (weak) IBOutlet NSTextField *computerNameLabel;
 @property (weak) IBOutlet NSTextField *adobeAccountLabel;
+@property (weak) IBOutlet NSTextField *remoteComputerNameLabel;
+
+@property NSDictionary *config;
+
+- (IBAction)registerBtn:(id)sender;
 
 - (NSString*)getComputerSerial;
 - (NSString*)getComputerName;
+
 - (void)registerWithServer:(NSDictionary *)config;
+- (void)getRemoteInfo:(NSDictionary *)config;
 
 @end
