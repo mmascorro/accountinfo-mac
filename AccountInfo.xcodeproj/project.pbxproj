@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		49272592199837CC00D0CA4A /* config.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 49272590199836E200D0CA4A /* config.json */; };
+		496C89D41C8AE09800EB4B2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496C89D31C8AE09800EB4B2C /* AppDelegate.swift */; };
 		49F4399C1956D7DA00F2839B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49F4399B1956D7DA00F2839B /* Cocoa.framework */; };
 		49F439A61956D7DA00F2839B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49F439A41956D7DA00F2839B /* InfoPlist.strings */; };
 		49F439A81956D7DA00F2839B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F439A71956D7DA00F2839B /* main.m */; };
@@ -46,6 +47,8 @@
 
 /* Begin PBXFileReference section */
 		49272590199836E200D0CA4A /* config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
+		492F32E81C89A9F000D64A02 /* AccountInfo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AccountInfo-Bridging-Header.h"; sourceTree = "<group>"; };
+		496C89D31C8AE09800EB4B2C /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49F439981956D7DA00F2839B /* AccountInfo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AccountInfo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49F4399B1956D7DA00F2839B /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		49F4399E1956D7DA00F2839B /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -130,11 +133,13 @@
 		49F439A11956D7DA00F2839B /* AccountInfo */ = {
 			isa = PBXGroup;
 			children = (
+				496C89D31C8AE09800EB4B2C /* AppDelegate.swift */,
 				49F439AD1956D7DA00F2839B /* AppDelegate.h */,
 				49F439AE1956D7DA00F2839B /* AppDelegate.m */,
 				49F439B01956D7DA00F2839B /* MainMenu.xib */,
 				49F439B31956D7DA00F2839B /* Images.xcassets */,
 				49F439A21956D7DA00F2839B /* Supporting Files */,
+				492F32E81C89A9F000D64A02 /* AccountInfo-Bridging-Header.h */,
 			);
 			path = AccountInfo;
 			sourceTree = "<group>";
@@ -215,7 +220,8 @@
 		49F439901956D7D900F2839B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "___FULLUSERNAME___";
 				TargetAttributes = {
 					49F439B81956D7DA00F2839B = {
@@ -269,6 +275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				496C89D41C8AE09800EB4B2C /* AppDelegate.swift in Sources */,
 				49F439AF1956D7DA00F2839B /* AppDelegate.m in Sources */,
 				49F439A81956D7DA00F2839B /* main.m in Sources */,
 			);
@@ -345,6 +352,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -360,7 +368,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -393,7 +401,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -402,11 +410,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AccountInfo/AccountInfo-Prefix.pch";
 				INFOPLIST_FILE = "AccountInfo/AccountInfo-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lumenbrite.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AccountInfo/AccountInfo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -415,11 +428,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AccountInfo/AccountInfo-Prefix.pch";
 				INFOPLIST_FILE = "AccountInfo/AccountInfo-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lumenbrite.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AccountInfo/AccountInfo-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -440,6 +457,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "AccountInfoTests/AccountInfoTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lumenbrite.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -458,6 +476,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AccountInfo/AccountInfo-Prefix.pch";
 				INFOPLIST_FILE = "AccountInfoTests/AccountInfoTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lumenbrite.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
