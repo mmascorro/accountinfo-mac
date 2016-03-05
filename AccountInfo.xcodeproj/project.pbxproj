@@ -11,9 +11,7 @@
 		496C89D41C8AE09800EB4B2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496C89D31C8AE09800EB4B2C /* AppDelegate.swift */; };
 		49F4399C1956D7DA00F2839B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49F4399B1956D7DA00F2839B /* Cocoa.framework */; };
 		49F439A61956D7DA00F2839B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49F439A41956D7DA00F2839B /* InfoPlist.strings */; };
-		49F439A81956D7DA00F2839B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F439A71956D7DA00F2839B /* main.m */; };
 		49F439AC1956D7DA00F2839B /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 49F439AA1956D7DA00F2839B /* Credits.rtf */; };
-		49F439AF1956D7DA00F2839B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F439AE1956D7DA00F2839B /* AppDelegate.m */; };
 		49F439B21956D7DA00F2839B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49F439B01956D7DA00F2839B /* MainMenu.xib */; };
 		49F439B41956D7DA00F2839B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49F439B31956D7DA00F2839B /* Images.xcassets */; };
 		49F439BB1956D7DA00F2839B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49F439BA1956D7DA00F2839B /* XCTest.framework */; };
@@ -56,11 +54,8 @@
 		49F439A01956D7DA00F2839B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		49F439A31956D7DA00F2839B /* AccountInfo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AccountInfo-Info.plist"; sourceTree = "<group>"; };
 		49F439A51956D7DA00F2839B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		49F439A71956D7DA00F2839B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		49F439A91956D7DA00F2839B /* AccountInfo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AccountInfo-Prefix.pch"; sourceTree = "<group>"; };
 		49F439AB1956D7DA00F2839B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		49F439AD1956D7DA00F2839B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		49F439AE1956D7DA00F2839B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		49F439B11956D7DA00F2839B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		49F439B31956D7DA00F2839B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		49F439B91956D7DA00F2839B /* AccountInfoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AccountInfoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,8 +129,6 @@
 			isa = PBXGroup;
 			children = (
 				496C89D31C8AE09800EB4B2C /* AppDelegate.swift */,
-				49F439AD1956D7DA00F2839B /* AppDelegate.h */,
-				49F439AE1956D7DA00F2839B /* AppDelegate.m */,
 				49F439B01956D7DA00F2839B /* MainMenu.xib */,
 				49F439B31956D7DA00F2839B /* Images.xcassets */,
 				49F439A21956D7DA00F2839B /* Supporting Files */,
@@ -149,7 +142,6 @@
 			children = (
 				49F439A31956D7DA00F2839B /* AccountInfo-Info.plist */,
 				49F439A41956D7DA00F2839B /* InfoPlist.strings */,
-				49F439A71956D7DA00F2839B /* main.m */,
 				49F439A91956D7DA00F2839B /* AccountInfo-Prefix.pch */,
 				49F439AA1956D7DA00F2839B /* Credits.rtf */,
 				49272590199836E200D0CA4A /* config.json */,
@@ -276,8 +268,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				496C89D41C8AE09800EB4B2C /* AppDelegate.swift in Sources */,
-				49F439AF1956D7DA00F2839B /* AppDelegate.m in Sources */,
-				49F439A81956D7DA00F2839B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

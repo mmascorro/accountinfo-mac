@@ -9,7 +9,7 @@
 import Cocoa
 
 @NSApplicationMain
-class MAppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBOutlet weak var window: NSWindow!
     @IBOutlet weak var serialLabel: NSTextField!
@@ -20,7 +20,7 @@ class MAppDelegate: NSObject, NSApplicationDelegate {
     var config = [String:String]()
     
     @IBAction func registerBtn(_: AnyObject) {
-        print("button tapped!")
+        self.registerWithServer(self.config)
     }
     
     func getComputerSerial() -> String {
@@ -40,19 +40,90 @@ class MAppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func registerWithServer(config: Dictionary<String, String>) {
+        let url: NSURL = NSURL(string:self.config["url"]!+"/computers/register")!
+        let urlRequest: NSMutableURLRequest = NSMutableURLRequest(URL: url)
         
+        
+        let postString = String(format: "computer[name]=%@&computer[serial]=%@", self.getComputerName(), self.getComputerSerial())
+        let postData = postString.dataUsingEncoding(NSUTF8StringEncoding)
+  
+        urlRequest.HTTPMethod = "POST"
+        urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        urlRequest.HTTPBody = postData
+    
+        
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(urlRequest) {
+            (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+            
+            
+            if error != nil {
+                print("error=\(error)")
+                return
+            } else {
+                let responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)!
+                
+                if (responseString == 0) {
+                
+                } else {
+                 
+                }
+            }
+        }
+        task.resume()
     }
     
     func getRemoteinfo(config: Dictionary<String, String>) {
         
+        let url: NSURL = NSURL(string:self.config["url"]!+"/computers/info/"+self.getComputerSerial())!
+        let urlRequest: NSMutableURLRequest = NSMutableURLRequest(URL: url)
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(urlRequest) {
+            (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+            
+            
+            if error != nil {
+                print("error=\(error)")
+                return
+            } else {
+                let responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)!
+
+                if (responseString == 0) {
+                    self.remoteComputerNameLabel.stringValue = "NOT REGISTERED"
+                    self.adobeAccountLabel.stringValue = ""
+                } else {
+                    let remoteInfo = responseString.componentsSeparatedByString(",")
+                    
+                    if (remoteInfo.count == 1) {
+                        self.remoteComputerNameLabel.stringValue = remoteInfo[0]
+                        self.adobeAccountLabel.stringValue = "No Account"
+                    } else {
+                        self.remoteComputerNameLabel.stringValue = remoteInfo[0]
+                        self.adobeAccountLabel.stringValue = remoteInfo[1]
+                    }
+                }
+            }
+        }
+        task.resume()
     }
     
-    
+
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        // Insert code here to initialize your application
-        
+
         self.serialLabel.stringValue = self.getComputerSerial()
         self.computerNameLabel.stringValue = self.getComputerName()
+
+        let configPath:String = NSBundle.mainBundle().bundlePath.stringByAppendingString("/../config.json")
+        let ic: NSData = NSData.init(contentsOfFile: configPath)!
+        do {
+            
+            try self.config = NSJSONSerialization.JSONObjectWithData(ic, options: NSJSONReadingOptions.MutableContainers ) as! [String : String]
+        } catch {
+            
+        }
+        
+        self.getRemoteinfo(self.config)
+        
     }
     
     func applicationWillTerminate(aNotification: NSNotification) {
@@ -61,17 +132,3 @@ class MAppDelegate: NSObject, NSApplicationDelegate {
     
     
 }
-
-
-/*
-
-NSString *configPath = [[[[NSBundle mainBundle] bundlePath] stringByDeletingLastPathComponent] stringByAppendingString:@"/config.json"];
-
-NSData *ic = [NSData dataWithContentsOfFile:configPath];
-
-self.config = [NSJSONSerialization JSONObjectWithData:ic options:NSJSONReadingMutableContainers error:nil];
-
-
-[self getRemoteInfo:config];
-
-*/

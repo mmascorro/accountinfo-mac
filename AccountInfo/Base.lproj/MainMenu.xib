@@ -12,7 +12,14 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customObject id="Voe-Tx-rLC" customClass="MAppDelegate" customModule="AccountInfo"/>
+        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="AccountInfo">
+            <connections>
+                <outlet property="adobeAccountLabel" destination="dzh-Nu-FPf" id="wFp-GU-88m"/>
+                <outlet property="computerNameLabel" destination="y7v-9R-EJi" id="SZR-sa-vF4"/>
+                <outlet property="remoteComputerNameLabel" destination="Mhb-Sc-bCe" id="Muy-U3-024"/>
+                <outlet property="serialLabel" destination="GVy-aK-jlK" id="y4B-ab-CLJ"/>
+            </connections>
+        </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
             <items>
@@ -702,6 +709,9 @@
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="registerBtn:" target="Voe-Tx-rLC" id="Tq8-Cy-2oD"/>
+                        </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NHt-3F-r7x">
                         <rect key="frame" x="54" y="132" width="104" height="17"/>
