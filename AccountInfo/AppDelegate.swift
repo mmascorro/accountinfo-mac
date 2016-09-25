@@ -27,73 +27,56 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         let platformExpert: io_service_t = IOServiceGetMatchingService(kIOMasterPortDefault, IOServiceMatching("IOPlatformExpertDevice"));
         
-        let serialNumberAsCFString = IORegistryEntryCreateCFProperty(platformExpert, kIOPlatformSerialNumberKey, kCFAllocatorDefault, 0);
+        let serialNumberAsCFString = IORegistryEntryCreateCFProperty(platformExpert, kIOPlatformSerialNumberKey as CFString!, kCFAllocatorDefault, 0);
         
         IOObjectRelease(platformExpert);
         
-        let sn = serialNumberAsCFString.takeUnretainedValue()
+        let sn = serialNumberAsCFString?.takeUnretainedValue()
         return sn as! String
     }
     
     func getComputerName() -> String {
-        return NSHost.currentHost().localizedName!
+        return Host.current().localizedName!
     }
     
-    func registerWithServer(config: Dictionary<String, String>) {
-        let url: NSURL = NSURL(string:self.config["url"]!+"/computers/register")!
-        let urlRequest: NSMutableURLRequest = NSMutableURLRequest(URL: url)
-        
-        
+    func registerWithServer(_ config: Dictionary<String, String>) {
+        let url: URL = URL(string:self.config["url"]!+"/computers/register")!
+        let request: NSMutableURLRequest = NSMutableURLRequest(url: url)
         let postString = String(format: "computer[name]=%@&computer[serial]=%@", self.getComputerName(), self.getComputerSerial())
-        let postData = postString.dataUsingEncoding(NSUTF8StringEncoding)
+        let postData = postString.data(using: String.Encoding.utf8)
   
-        urlRequest.HTTPMethod = "POST"
-        urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        urlRequest.HTTPBody = postData
-    
-        
-        let session = NSURLSession.sharedSession()
-        let task = session.dataTaskWithRequest(urlRequest) {
-            (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
-            
-            
+        request.httpMethod = "POST"
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpBody = postData
+
+        let task = URLSession.shared.dataTask(with: request as URLRequest) {
+            data, response, error in
             if error != nil {
                 print("error=\(error)")
                 return
-            } else {
-                let responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)!
-                
-                if (responseString == 0) {
-                
-                } else {
-                 
-                }
             }
         }
         task.resume()
     }
     
-    func getRemoteinfo(config: Dictionary<String, String>) {
+    func getRemoteinfo(_ config: Dictionary<String, String>) {
         
-        let url: NSURL = NSURL(string:self.config["url"]!+"/computers/info/"+self.getComputerSerial())!
-        let urlRequest: NSMutableURLRequest = NSMutableURLRequest(URL: url)
-        let session = NSURLSession.sharedSession()
-        let task = session.dataTaskWithRequest(urlRequest) {
-            (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
-            
+        let url: URL = URL(string:self.config["url"]!+"/computers/info/"+self.getComputerSerial())!
+        let request: NSMutableURLRequest = NSMutableURLRequest(url: url)
+        let task = URLSession.shared.dataTask(with: request as URLRequest) {
+            data, response, error in
             
             if error != nil {
                 print("error=\(error)")
                 return
             } else {
-                let responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)!
-
-                if (responseString == 0) {
+                let response = String(data: data!, encoding: String.Encoding.utf8)
+                if (Int(response!) == 0) {
                     self.remoteComputerNameLabel.stringValue = "NOT REGISTERED"
                     self.adobeAccountLabel.stringValue = ""
                 } else {
-                    let remoteInfo = responseString.componentsSeparatedByString(",")
-                    
+                    let remoteInfo = response!.components(separatedBy: ",")
+
                     if (remoteInfo.count == 1) {
                         self.remoteComputerNameLabel.stringValue = remoteInfo[0]
                         self.adobeAccountLabel.stringValue = "No Account"
@@ -108,16 +91,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
 
-    func applicationDidFinishLaunching(aNotification: NSNotification) {
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
 
         self.serialLabel.stringValue = self.getComputerSerial()
         self.computerNameLabel.stringValue = self.getComputerName()
 
-        let configPath:String = NSBundle.mainBundle().bundlePath.stringByAppendingString("/../config.json")
-        let ic: NSData = NSData.init(contentsOfFile: configPath)!
+        let configPath:String = Bundle.main.bundlePath + "/../config.json"
+        let ic: Data = try! Data.init(contentsOf: URL(fileURLWithPath: configPath))
         do {
             
-            try self.config = NSJSONSerialization.JSONObjectWithData(ic, options: NSJSONReadingOptions.MutableContainers ) as! [String : String]
+            try self.config = JSONSerialization.jsonObject(with: ic, options: JSONSerialization.ReadingOptions.mutableContainers ) as! [String : String]
         } catch {
             
         }
@@ -126,7 +109,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
     }
     
-    func applicationWillTerminate(aNotification: NSNotification) {
+    func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
     
