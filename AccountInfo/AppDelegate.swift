@@ -52,7 +52,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let task = URLSession.shared.dataTask(with: request as URLRequest) {
             data, response, error in
             if error != nil {
-                print("error=\(error)")
+                print("error=\(String(describing: error))")
                 return
             }
         }
@@ -67,7 +67,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             data, response, error in
             
             if error != nil {
-                print("error=\(error)")
+                print("error=\(String(describing: error))")
                 return
             } else {
                 let response = String(data: data!, encoding: String.Encoding.utf8)
